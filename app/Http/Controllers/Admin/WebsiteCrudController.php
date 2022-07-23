@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Admin\FactoryAdminController\AbstractCrudController;
 use App\Http\Requests\WebsiteCreateRequest;
 use App\Models\Website;
-
+use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 class WebsiteCrudController extends AbstractCrudController
 {
@@ -16,7 +16,13 @@ class WebsiteCrudController extends AbstractCrudController
         $this->crud->addColumns([
             [
                 'name' => 'domain',
-                'label' => __($this->getResourcesLang() . '.listOperation.label.nome'),
+                'label' => __($this->getResourcesLang() . '.listOperation.label.domain'),
+                'type' => 'text',
+                'priority' => 1,
+            ],
+            [
+                'name' => 'authorization',
+                'label' => __($this->getResourcesLang() . '.listOperation.label.authorization'),
                 'type' => 'text',
                 'priority' => 2,
             ],
@@ -24,13 +30,13 @@ class WebsiteCrudController extends AbstractCrudController
                 'name' => 'created_at',
                 'label' => __($this->getResourcesLang() . '.listOperation.label.createdAt'),
                 'type' => 'text',
-                'priority' => 2,
+                'priority' => 3,
             ],
             [
                 'name' => 'updated_at',
                 'label' => __($this->getResourcesLang() . '.listOperation.label.updatedAt'),
                 'type' => 'text',
-                'priority' => 3,
+                'priority' => 4,
             ],
         ]);
     }
@@ -44,6 +50,14 @@ class WebsiteCrudController extends AbstractCrudController
                 'type' => 'text',
                 'attributes' => [
                     'placeholder' => __($this->getResourcesLang() . '.createOperation.placeholder.domain'),
+                ],
+            ],
+            [
+                'name' => 'authorization',
+                'label' => __($this->getResourcesLang() . '.createOperation.label.authorization'),
+                'type' => 'text',
+                'attributes' => [
+                    'placeholder' => __($this->getResourcesLang() . '.createOperation.placeholder.authorization'),
                 ],
             ],
         ];
@@ -68,7 +82,7 @@ class WebsiteCrudController extends AbstractCrudController
 
     protected function getSectionName(): string
     {
-        return 'siti';
+        return 'website';
     }
 
     protected function getModelValue(): string

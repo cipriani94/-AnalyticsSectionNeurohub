@@ -2,14 +2,15 @@
 
 namespace App\Models;
 
+use Backpack\CRUD\app\Models\Traits\CrudTrait;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-class User extends Authenticatable
+use App\Models\InterfaceModel\EloquentTableInfo;
+class User extends Authenticatable implements EloquentTableInfo
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable,CrudTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -37,4 +38,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public static function getTableName(): string
+    {
+        return with(new static)->getTable();
+    }
 }

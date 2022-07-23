@@ -35,10 +35,10 @@ class CreateRequestShare extends FormRequest
             'attivita_id' => 'required|integer',
             'extra' => 'required|array',
             'extra.name' => 'required|string',
-            'extra.userName' => 'required|string',
+            'extra.username' => 'required|string',
             'extra.email' => 'required|string',
             'extra.allegato' => 'required|string',
-            'extra.userLink' => 'required|string',
+            'extra.user_link' => 'required|string',
             'allegato_id' => 'required|integer'
         ];
     }

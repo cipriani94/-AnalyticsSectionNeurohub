@@ -56,8 +56,6 @@ abstract class AbstractCrudController extends CrudController
 
     protected abstract function setupCreateOperation();
 
-    protected abstract function getEntryNameStrings(): array;
-
     protected abstract function hasActiveAttribute(): bool;
 
     protected abstract function getSectionName(): string;
@@ -73,6 +71,11 @@ abstract class AbstractCrudController extends CrudController
     protected function getResourcesLang(): string
     {
         return str_replace(['-', '_'], '', $this->getSectionName()) . 'page';
+    }
+
+    protected function getEntryNameStrings(): array
+    {
+        return __($this->getResourcesLang().'.entryNameValues');
     }
 
     protected function modifyNewEntryCreated($item)

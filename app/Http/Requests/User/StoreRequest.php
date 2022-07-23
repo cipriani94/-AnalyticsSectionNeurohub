@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class WebsiteCreateRequest extends FormRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,16 @@ class WebsiteCreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'domain' => 'required|string|min:4',
-            'authorization'=> 'required|string|min:20|max:255'
+            'name' => 'required|string|min:5|max:255',
+            'email' => 'required|email|min:3|max:255|unique:users,email',
+            'password' => 'required|confirmed',
         ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'name' => __('userpage.requestMessage.name')
+        ]; 
     }
 }
